@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Our First Chapter ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="animations.css">
+    <link rel="stylesheet" href="boiling-heart.css">
+</head>
+
+<body>
+
+    <!-- MUSIC -->
+    <audio id="backgroundMusic" loop>
+        <source src="music/music.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <!-- ================= LOGIN PAGE ================= -->
+
+    <div id="loginGate" class="login-gate">
+
+        <div class="login-background"></div>
+
+        <!-- BOILING HEART - INTERACTIVE SODA EFFECT -->
+        <div class="boiling-heart-container">
+            <div class="boiling-heart" id="boilingHeart">❤️</div>
+            <div id="boilParticles" class="boil-particles"></div>
+        </div>
+
+        <div class="login-card" id="loginCard">
+
+            <div class="small-label">
+                ❤️ FOR MY LOVE ❤️
+            </div>
+
+            <div class="lock-icon">
+                🔒
+            </div>
+
+            <h1>A Small Secret</h1>
+
+            <p>
+                Before you see our story, there's a little
+                something I want you to guess.
+            </p>
+
+            <p class="login-message">
+                It's hidden somewhere in our memories —
+                a date that means everything to us. ❤️
+            </p>
+
+            <form id="loginForm">
+
+                <div class="password-input-wrapper">
+                    <input
+                        type="password"
+                        id="password"
+                        inputmode="numeric"
+                        maxlength="6"
+                        autocomplete="off"
+                        placeholder="• • • • • •"
+                        class="password-input"
+                    >
+                    <div class="input-hearts"></div>
+                </div>
+
+                <button type="submit" class="login-button">
+                    ❤️ Open Our Story
+                </button>
+
+            </form>
+
+            <div id="loginError" class="login-error">
+                Hmm... that's not it, love. 🥺❤️
+            </div>
+
+            <div id="loginHint" class="login-hint">
+                ✨ Think about our special date...
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= UNLOCK SURPRISE ================= -->
+
+    <div id="unlockScreen" class="unlock-screen">
+
+        <!-- SURPRISE CONFETTI & EFFECTS -->
+        <div id="surpriseEffects" class="surprise-effects"></div>
+
+        <div class="unlock-content">
+
+            <div class="unlock-heart">❤️</div>
+
+            <h1>Welcome, Love.</h1>
+
+            <p>
+                I've been waiting for you.
+            </p>
+
+            <span>
+                Our story is about to begin...
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= MAIN WEBSITE ================= -->
+
+    <main id="mainContent" class="hidden">
+
+
+        <!-- MUSIC BUTTON -->
+
+        <button id="musicButton" class="music-button">
+            🎵 <span id="musicText">Music</span>
+        </button>
+
+
+        <!-- FLOATING HEARTS -->
+
+        <div id="floatingHearts"></div>
+
+
+        <!-- ================= HERO ================= -->
+
+        <section class="hero">
+
+            <div class="hero-content">
+
+                <div class="small-label">
+                    ❤️ FOR MY LOVE ❤️
+                </div>
+
+                <h1>
+                    Our First
+                    <span>Chapter</span>
+                </h1>
+
+                <p class="hero-subtitle">
+
+                    One unexpected meeting.
+                    <br>
+
+                    One beautiful beginning.
+                    <br>
+
+                    One story I hope we continue together.
+
+                </p>
+
+                <button id="beginButton" class="main-button">
+
+                    ❤️ Begin Our Story
+
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= STORY ================= -->
+
+        <section id="story" class="section story-section">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <span>CHAPTER 01</span>
+
+                    <h2>It Started Unexpectedly</h2>
+
+                </div>
+
+
+                <div class="story-card reveal">
+
+                    <div class="story-number">
+                        01
+                    </div>
+
+                    <p>
+                        Love, you came into my life unexpectedly.
+                        The first time I saw you, I honestly never
+                        thought that you would become someone this
+                        important to me.
+                    </p>
+
+                    <p>
+                        I never imagined that our simple meeting
+                        would eventually lead us here, celebrating
+                        our first monthsary together.
+                    </p>
+
+                    <p>
+                        Life really has a funny way of bringing
+                        someone into our lives when we least
+                        expect it.
+                    </p>
+
+                    <div class="quote">
+
+                        ❤️
+
+                        <span>
+                            And I'm so thankful that life brought
+                            you to me.
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= TRIALS ================= -->
+
+        <section class="section dark-section">
+
+            <div class="container">
+
+                <div class="section-heading light reveal">
+
+                    <span>CHAPTER 02</span>
+
+                    <h2>Our Beginning</h2>
+
+                </div>
+
+
+                <div class="dark-story reveal">
+
+                    <p>
+                        Love, our story started sa daghan kaayo'g
+                        trials and revelations.
+                    </p>
+
+                    <p>
+                        Maybe it wasn't the easiest beginning,
+                        but despite everything, I'm still grateful
+                        nga nag-abot ta and we decided to continue
+                        this story together.
+                    </p>
+
+
+                    <div class="highlight">
+
+                        ✨
+
+                        <span>
+                            I hope nga dili magbag-o imong
+                            paghigugma ug paglangga sa ako.
+                        </span>
+
+                    </div>
+
+
+                    <p>
+                        I know I am not perfect for you.
+                        Naa koy flaws, mistakes, and shortcomings.
+                        But I want you to know nga I am doing my
+                        best of my best to become the best version
+                        of myself for you.
+                    </p>
+
+
+                    <p>
+                        I may not always get everything right,
+                        but I promise nga I will continue to learn,
+                        improve, and do my best to make you feel
+                        loved, valued, and appreciated.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= MEMORIES ================= -->
+
+        <section class="section memories-section">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <span>CHAPTER 03</span>
+
+                    <h2>Our Memories</h2>
+
+                    <p>
+                        Happy kaayo ko, sobra sobra sobra, love. ❤️
+                    </p>
+
+                </div>
+
+
+                <!-- JAVASCRIPT WILL ADD PHOTOS HERE -->
+
+                <div id="memoryGrid" class="memory-grid">
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= LAAG ================= -->
+
+        <section class="section adventure-section">
+
+            <div class="container">
+
+                <div class="adventure-card reveal">
+
+                    <div class="big-heart">
+                        ❤️
+                    </div>
+
+                    <h2>
+
+                        Every Laag.
+                        <br>
+
+                        Every Moment.
+                        <br>
+
+                        Every Memory.
+
+                    </h2>
+
+
+                    <p>
+                        All of our laag, our moments,
+                        our conversations, our laughter and even
+                        the little things we've experienced
+                        together mean so much to me.
+                    </p>
+
+
+                    <p>
+                        They may seem like simple moments,
+                        but because I experienced them with you,
+                        they became memories I will always
+                        treasure.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FUTURE ================= -->
+
+        <section class="section future-section">
+
+            <div class="container">
+
+                <div class="section-heading light reveal">
+
+                    <span>CHAPTER 04</span>
+
+                    <h2>Our Future</h2>
+
+                </div>
+
+
+                <div class="future-content reveal">
+
+                    <p class="future-intro">
+
+                        Always nako ginatan-aw atong future
+                        together, love.
+
+                    </p>
+
+
+                    <div class="dreams">
+
+
+                        <div class="dream">
+
+                            <span>01</span>
+
+                            <h3>Our Goals</h3>
+
+                            <p>
+                                Grow together and achieve the
+                                things we dream about.
+                            </p>
+
+                        </div>
+
+
+                        <div class="dream">
+
+                            <span>02</span>
+
+                            <h3>Our Dreams</h3>
+
+                            <p>
+                                Build the life we've always
+                                imagined.
+                            </p>
+
+                        </div>
+
+
+                        <div class="dream">
+
+                            <span>03</span>
+
+                            <h3>More Memories</h3>
+
+                            <p>
+                                More laag, more laughter,
+                                more moments together.
+                            </p>
+
+                        </div>
+
+
+                        <div class="dream">
+
+                            <span>04</span>
+
+                            <h3>Us</h3>
+
+                            <p>
+                                Continue choosing each other
+                                every day.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="future-message">
+
+                        ✨
+
+                        <p>
+                            I have very happy and wonderful
+                            plans for us, love.
+                        </p>
+
+                        <strong>
+                            And I want those plans to become
+                            real with you.
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= DISTANCE ================= -->
+
+        <section class="section distance-section">
+
+            <div class="container">
+
+                <div class="distance-card reveal">
+
+                    <div class="moon">
+                        🌙
+                    </div>
+
+                    <span>
+                        IF SOMEDAY...
+                    </span>
+
+
+                    <h2>
+                        Distance Comes
+                        <br>
+                        Between Us
+                    </h2>
+
+
+                    <p>
+                        If someday moabot ang time nga kinahanglan
+                        ta mahimong layo sa usag usa tungod sa
+                        atong future...
+                    </p>
+
+
+                    <p class="important">
+                        Always remember how much I love you. ❤️
+                    </p>
+
+
+                    <p>
+                        Always remember how special you are to me.
+                        Distance may separate us physically,
+                        but I hope it will never make our hearts
+                        distant from each other.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= COMMUNICATION ================= -->
+
+        <section class="section communication-section">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+
+                    <span>CHAPTER 05</span>
+
+                    <h2>
+                        When Things Get Difficult
+                    </h2>
+
+                </div>
+
+
+                <div class="communication-card reveal">
+
+                    <p>
+                        I know nga moabot gyud ang mga downs,
+                        mga away, tampuhan, misunderstandings,
+                        and difficult days.
+                    </p>
+
+
+                    <div class="big-quote">
+
+                        “Let's just talk calmly.”
+
+                    </div>
+
+
+                    <p>
+                        Instead of choosing anger,
+                        let's choose understanding.
+                    </p>
+
+
+                    <p>
+                        Instead of negativity,
+                        let's choose positivity.
+                    </p>
+
+
+                    <p>
+                        If naa tay dili masabtan sa usag usa,
+                        let's talk about it.
+                    </p>
+
+
+                    <p>
+                        If something hurts us,
+                        let's communicate.
+                    </p>
+
+
+                    <div class="promise">
+
+                        ❤️
+
+                        We fix what we don't understand.
+                        We listen.
+                        We choose each other.
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FINAL LETTER ================= -->
+
+        <section class="section final-section">
+
+            <div class="container">
+
+                <div id="letterLock" class="letter-lock reveal">
+
+                    <div class="lock-icon">
+                        🔐
+                    </div>
+
+                    <span>
+                        ONE LAST THING
+                    </span>
+
+                    <h2>
+                        I Have Something
+                        <br>
+                        to Tell You
+                    </h2>
+
+                    <p>
+                        Open my heart when you're ready.
+                    </p>
+
+                    <button id="openHeartButton" class="main-button">
+
+                        ❤️ Open My Heart
+
+                    </button>
+
+                </div>
+
+
+                <div id="finalLetter" class="letter hidden">
+
+                    <div class="letter-top">
+                        ❤️
+                    </div>
+
+                    <span>
+                        MY LETTER TO YOU
+                    </span>
+
+
+                    <h2>
+                        Happy First Monthsary,
+                        <br>
+                        My Love ❤️
+                    </h2>
+
+
+                    <div class="letter-body">
+
+                        <p>
+                            Love, unta dili ka kapuyon sa
+                            paghigugma sa ako.
+                        </p>
+
+                        <p>
+                            Unta dili ka mahimong cold,
+                            ug unta dili ka magbag-o.
+                        </p>
+
+                        <p>
+                            I don't ask for a perfect relationship.
+                            I just want something real—something
+                            where we can communicate, understand
+                            each other, forgive each other,
+                            grow together, and continue choosing
+                            each other every day.
+                        </p>
+
+                        <p>
+                            Thank you for coming into my life
+                            unexpectedly.
+                        </p>
+
+                        <p>
+                            Thank you for every laag, every moment,
+                            every laugh, every conversation,
+                            every memory, and even every trial
+                            that we've faced together.
+                        </p>
+
+                        <p>
+                            Everything we've experienced is now
+                            part of our story.
+                        </p>
+
+                        <p>
+                            This is only our first month, love.
+                            We still have a long way to go.
+                        </p>
+
+                        <p>
+                            There will be more challenges,
+                            more dreams, more places to visit,
+                            more memories to make, and more
+                            chapters to write.
+                        </p>
+
+
+                        <div class="final-quote">
+
+                            ❤️
+
+                            <p>
+                                And if I could choose who I want
+                                beside me while writing all those
+                                chapters...
+                            </p>
+
+                            <strong>
+                                I would choose you.
+                            </strong>
+
+                        </div>
+
+
+                        <p>
+                            Happy first monthsary, my love. 🥰❤️
+                        </p>
+
+
+                        <p>
+                            Here's to our first month,
+                            to our story, to our dreams,
+                            to our future, and to all the
+                            beautiful memories that are still
+                            waiting for us.
+                        </p>
+
+
+                        <p class="love-ending">
+
+                            I love you so much, love.
+                            <br>
+
+                            Sobra sobra sobra. ❤️🥺
+
+                        </p>
+
+                    </div>
+
+
+                    <div class="letter-signature">
+
+                        <span>
+                            Always,
+                        </span>
+
+                        <strong>
+                            Your Love ❤️
+                        </strong>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= END ================= -->
+
+        <section class="ending">
+
+            <div class="ending-content">
+
+                <div class="ending-heart">
+                    ❤️
+                </div>
+
+                <p>
+                    CHAPTER ONE
+                </p>
+
+                <h2>
+                    This is only
+                    <br>
+                    the beginning.
+                </h2>
+
+                <span>
+                    Happy First Monthsary ❤️
+                </span>
+
+                <small>
+                    More chapters are waiting for us...
+                </small>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+
+    <script src="script.js"></script>
+    <script src="enhanced-animations.js"></script>
+    <script src="boiling-heart.js"></script>
+
+</body>
+</html>
