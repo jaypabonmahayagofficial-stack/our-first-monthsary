@@ -466,6 +466,16 @@ const mediaList = [
         caption:
             "Our first travel together."
     },
+   {
+        file: "Photo11.jpeg",
+        caption:
+            "Our first travel together."
+    },
+   {
+        file: "Photo12.jpeg",
+        caption:
+            "Our first travel together."
+    },
 
     {
         file: "Photo3.png",
@@ -552,6 +562,11 @@ const mediaList = [
         file: "vid10.mp4",
         caption:
             "Rides with you. ❤️"
+    }
+   {
+        file: "vid11.mp4",
+        caption:
+            "First tiktok vid with you. ❤️"
     }
 
 ];
