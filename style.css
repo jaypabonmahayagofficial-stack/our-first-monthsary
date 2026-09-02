@@ -1,15 +1,11 @@
-/* =========================================================
-   GOOGLE FONTS
-========================================================= */
-
 @import url(
-    "https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
+"https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap"
 );
 
 
-/* =========================================================
+/* ===============================
    GLOBAL
-========================================================= */
+================================ */
 
 * {
     box-sizing: border-box;
@@ -25,59 +21,32 @@ body {
 
     margin: 0;
 
-    padding: 0;
-
     font-family:
         "Inter",
         sans-serif;
 
-    background:
-        #fff8fa;
+    background: #fff8fa;
 
-    color:
-        #33282d;
+    color: #33282d;
 
     overflow-x: hidden;
 
-    -webkit-font-smoothing: antialiased;
-
-}
-
-
-body.site-open {
-    overflow-x: hidden;
-}
-
-
-button,
-input {
-    font-family:
-        inherit;
-}
-
-
-button {
-    -webkit-tap-highlight-color:
-        transparent;
 }
 
 
 .hidden {
-    display:
-        none !important;
+    display: none !important;
 }
 
 
 .container {
 
-    width:
-        min(
-            1100px,
-            90%
-        );
+    width: min(
+        1100px,
+        90%
+    );
 
-    margin:
-        0 auto;
+    margin: auto;
 
 }
 
@@ -85,34 +54,29 @@ button {
 .section {
 
     padding:
-        110px 0;
+        110px
+        0;
 
 }
 
 
-/* =========================================================
+/* ===============================
    LOGIN
-========================================================= */
+================================ */
 
 .login-gate {
 
-    position:
-        fixed;
+    position: fixed;
 
-    inset:
-        0;
+    inset: 0;
 
-    z-index:
-        9999;
+    z-index: 9999;
 
-    display:
-        flex;
+    display: flex;
 
-    align-items:
-        center;
+    align-items: center;
 
-    justify-content:
-        center;
+    justify-content: center;
 
     background:
 
@@ -128,58 +92,35 @@ button {
             #ffe2ea
         );
 
-    overflow:
-        hidden;
-
-}
-
-
-.login-background {
-
-    position:
-        absolute;
-
-    inset:
-        0;
-
-    pointer-events:
-        none;
+    overflow: visible;
 
 }
 
 
 .login-card {
 
-    position:
-        relative;
+    position: relative;
 
-    z-index:
-        2;
-
-    width:
-        min(
-            90%,
-            480px
-        );
+    width: min(
+        90%,
+        480px
+    );
 
     padding:
-        55px 35px;
+        55px
+        35px;
 
-    text-align:
-        center;
+    text-align: center;
 
     background:
         rgba(
             255,
             255,
             255,
-            0.82
+            0.8
         );
 
     backdrop-filter:
-        blur(20px);
-
-    -webkit-backdrop-filter:
         blur(20px);
 
     border-radius:
@@ -193,21 +134,6 @@ button {
             50,
             0.15
         );
-
-    transition:
-        opacity 0.6s ease,
-        transform 0.6s ease;
-
-}
-
-
-.login-gate.unlocking .login-card {
-
-    transform:
-        scale(0.85);
-
-    opacity:
-        0;
 
 }
 
@@ -238,7 +164,8 @@ button {
         20px;
 
     animation:
-        float 3s
+        float
+        3s
         infinite
         ease-in-out;
 
@@ -254,11 +181,9 @@ button {
     font-size:
         55px;
 
-    font-weight:
-        600;
-
     margin:
-        10px 0;
+        10px
+        0;
 
 }
 
@@ -282,11 +207,7 @@ button {
 }
 
 
-/* =========================================================
-   LOGIN FORM
-========================================================= */
-
-#loginForm {
+.login-form {
 
     margin-top:
         30px;
@@ -294,18 +215,7 @@ button {
 }
 
 
-.password-input-wrapper {
-
-    position:
-        relative;
-
-    width:
-        100%;
-
-}
-
-
-.password-input {
+.login-form input {
 
     width:
         100%;
@@ -314,7 +224,9 @@ button {
         17px;
 
     border:
-        1px solid
+
+        1px
+        solid
         #e4b7c4;
 
     border-radius:
@@ -335,48 +247,10 @@ button {
     background:
         white;
 
-    color:
-        #33282d;
-
-    transition:
-        0.3s;
-
 }
 
 
-.password-input:focus {
-
-    border-color:
-        #b86d82;
-
-    box-shadow:
-        0 0 0 4px
-        rgba(
-            184,
-            109,
-            130,
-            0.12
-        );
-
-}
-
-
-.password-input::placeholder {
-
-    color:
-        #c9aab4;
-
-    letter-spacing:
-        5px;
-
-}
-
-
-/* =========================================================
-   LOGIN BUTTON
-========================================================= */
-
-.login-button {
+.login-form button {
 
     width:
         100%;
@@ -405,34 +279,8 @@ button {
     font-size:
         15px;
 
-    transition:
-        0.3s;
-
 }
 
-
-.login-button:hover {
-
-    transform:
-        translateY(-3px);
-
-    background:
-        #513640;
-
-}
-
-
-.login-button:active {
-
-    transform:
-        translateY(0);
-
-}
-
-
-/* =========================================================
-   LOGIN ERROR
-========================================================= */
 
 .login-error {
 
@@ -468,14 +316,11 @@ button {
 }
 
 
-/* =========================================================
-   SHAKE
-========================================================= */
-
 .shake {
 
     animation:
-        shake 0.5s;
+        shake
+        0.5s;
 
 }
 
@@ -501,33 +346,25 @@ button {
 }
 
 
-/* =========================================================
-   FLOAT
-========================================================= */
-
 @keyframes float {
 
     0%,
     100% {
-
         transform:
             translateY(0);
-
     }
 
     50% {
-
         transform:
             translateY(-10px);
-
     }
 
 }
 
 
-/* =========================================================
+/* ===============================
    UNLOCK SCREEN
-========================================================= */
+================================ */
 
 .unlock-screen {
 
@@ -668,9 +505,9 @@ button {
 }
 
 
-/* =========================================================
+/* ===============================
    UNLOCK PARTICLES
-========================================================= */
+================================ */
 
 .unlock-heart-particle {
 
@@ -715,16 +552,19 @@ button {
     to {
 
         transform:
+
             translate(
                 calc(
                     -50% +
                     var(--x)
                 ),
+
                 calc(
                     -50% +
                     var(--y)
                 )
             )
+
             rotate(
                 360deg
             );
@@ -737,9 +577,9 @@ button {
 }
 
 
-/* =========================================================
-   MUSIC BUTTON
-========================================================= */
+/* ===============================
+   MUSIC
+================================ */
 
 .music-button {
 
@@ -762,7 +602,8 @@ button {
         30px;
 
     padding:
-        12px 18px;
+        12px
+        18px;
 
     background:
         rgba(
@@ -778,40 +619,12 @@ button {
     cursor:
         pointer;
 
-    transition:
-        0.3s;
-
-    box-shadow:
-        0 8px 25px
-        rgba(
-            0,
-            0,
-            0,
-            0.15
-        );
-
 }
 
 
-.music-button:hover {
-
-    transform:
-        translateY(-3px);
-
-}
-
-
-.music-button.playing {
-
-    background:
-        #9c536b;
-
-}
-
-
-/* =========================================================
+/* ===============================
    FLOATING HEARTS
-========================================================= */
+================================ */
 
 #floatingHearts {
 
@@ -826,9 +639,6 @@ button {
 
     z-index:
         10;
-
-    overflow:
-        hidden;
 
 }
 
@@ -886,9 +696,9 @@ button {
 }
 
 
-/* =========================================================
+/* ===============================
    HERO
-========================================================= */
+================================ */
 
 .hero {
 
@@ -974,7 +784,8 @@ button {
 .hero-subtitle {
 
     margin:
-        45px auto;
+        45px
+        auto;
 
     line-height:
         2;
@@ -985,10 +796,6 @@ button {
 }
 
 
-/* =========================================================
-   MAIN BUTTON
-========================================================= */
-
 .main-button {
 
     border:
@@ -998,7 +805,8 @@ button {
         50px;
 
     padding:
-        17px 28px;
+        17px
+        28px;
 
     background:
         #3c2830;
@@ -1023,23 +831,12 @@ button {
     transform:
         translateY(-4px);
 
-    background:
-        #513640;
-
 }
 
 
-.main-button:active {
-
-    transform:
-        translateY(0);
-
-}
-
-
-/* =========================================================
+/* ===============================
    SECTION HEADINGS
-========================================================= */
+================================ */
 
 .section-heading {
 
@@ -1083,18 +880,11 @@ button {
         500;
 
     margin:
-        15px 0;
+        15px
+        0;
 
     line-height:
         0.95;
-
-}
-
-
-.section-heading p {
-
-    color:
-        #705d65;
 
 }
 
@@ -1107,9 +897,9 @@ button {
 }
 
 
-/* =========================================================
+/* ===============================
    REVEAL
-========================================================= */
+================================ */
 
 .reveal {
 
@@ -1143,9 +933,9 @@ button {
 }
 
 
-/* =========================================================
+/* ===============================
    STORY
-========================================================= */
+================================ */
 
 .story-section {
 
@@ -1225,7 +1015,9 @@ button {
         20px;
 
     border-left:
-        3px solid
+
+        3px
+        solid
         #d59baa;
 
     display:
@@ -1244,9 +1036,9 @@ button {
 }
 
 
-/* =========================================================
+/* ===============================
    DARK STORY
-========================================================= */
+================================ */
 
 .dark-section {
 
@@ -1281,7 +1073,8 @@ button {
 .highlight {
 
     margin:
-        40px 0;
+        40px
+        0;
 
     padding:
         25px;
@@ -1307,9 +1100,9 @@ button {
 }
 
 
-/* =========================================================
+/* ===============================
    MEMORIES
-========================================================= */
+================================ */
 
 .memories-section {
 
@@ -1349,7 +1142,10 @@ button {
 
     box-shadow:
 
-        0 15px 50px
+        0
+        15px
+        50px
+
         rgba(
             80,
             30,
@@ -1357,45 +1153,13 @@ button {
             0.08
         );
 
-    overflow:
-        hidden;
-
-    transition:
-        transform 0.4s ease,
-        box-shadow 0.4s ease;
-
 }
 
-
-.memory-card:hover {
-
-    transform:
-        translateY(-6px);
-
-    box-shadow:
-
-        0 20px 60px
-        rgba(
-            80,
-            30,
-            50,
-            0.13
-        );
-
-}
-
-
-/* =========================================================
-   PHOTO / VIDEO WRAPPER
-========================================================= */
 
 .photo-wrapper {
 
     position:
         relative;
-
-    width:
-        100%;
 
     aspect-ratio:
         4 / 5;
@@ -1406,45 +1170,12 @@ button {
     border-radius:
         18px;
 
-    background:
-        #f1e8eb;
-
 }
 
 
-/* =========================================================
-   IMAGES
-========================================================= */
-
-.photo-wrapper img {
-
-    display:
-        block;
-
-    width:
-        100%;
-
-    height:
-        100%;
-
-    object-fit:
-        cover;
-
-    border:
-        none;
-
-}
-
-
-/* =========================================================
-   VIDEOS
-========================================================= */
-
+.photo-wrapper img,
 .photo-wrapper video {
 
-    display:
-        block;
-
     width:
         100%;
 
@@ -1454,49 +1185,8 @@ button {
     object-fit:
         cover;
 
-    border:
-        none;
-
-    outline:
-        none;
-
-    background:
-        #000;
-
-    /*
-     * Prevent accidental controls
-     */
-
-    pointer-events:
-        none;
-
 }
 
-
-/*
- * Some mobile browsers need this
- * for inline video playback.
- */
-
-.photo-wrapper video::-webkit-media-controls {
-
-    display:
-        none !important;
-
-}
-
-
-.photo-wrapper video::-webkit-media-controls-enclosure {
-
-    display:
-        none !important;
-
-}
-
-
-/* =========================================================
-   PHOTO NUMBER
-========================================================= */
 
 .photo-number {
 
@@ -1510,7 +1200,8 @@ button {
         15px;
 
     padding:
-        7px 12px;
+        7px
+        12px;
 
     border-radius:
         20px;
@@ -1529,15 +1220,8 @@ button {
     font-size:
         11px;
 
-    z-index:
-        2;
-
 }
 
-
-/* =========================================================
-   VIDEO LABEL
-========================================================= */
 
 .video-label {
 
@@ -1551,7 +1235,8 @@ button {
         15px;
 
     padding:
-        7px 10px;
+        7px
+        10px;
 
     border-radius:
         20px;
@@ -1570,20 +1255,14 @@ button {
     font-size:
         10px;
 
-    z-index:
-        2;
-
 }
 
-
-/* =========================================================
-   MEMORY CAPTION
-========================================================= */
 
 .memory-card p {
 
     margin:
-        18px 8px;
+        18px
+        8px;
 
     font-family:
         "Cormorant Garamond",
@@ -1592,15 +1271,12 @@ button {
     font-size:
         23px;
 
-    line-height:
-        1.3;
-
 }
 
 
-/* =========================================================
+/* ===============================
    ADVENTURE
-========================================================= */
+================================ */
 
 .adventure-section {
 
@@ -1670,9 +1346,9 @@ button {
 }
 
 
-/* =========================================================
+/* ===============================
    FUTURE
-========================================================= */
+================================ */
 
 .future-section {
 
@@ -1712,7 +1388,8 @@ button {
         );
 
     margin:
-        60px 0;
+        60px
+        0;
 
 }
 
@@ -1723,7 +1400,9 @@ button {
         35px;
 
     border:
-        1px solid
+
+        1px
+        solid
         rgba(
             255,
             255,
@@ -1802,9 +1481,9 @@ button {
 }
 
 
-/* =========================================================
+/* ===============================
    DISTANCE
-========================================================= */
+================================ */
 
 .distance-section {
 
@@ -1887,9 +1566,9 @@ button {
 }
 
 
-/* =========================================================
+/* ===============================
    COMMUNICATION
-========================================================= */
+================================ */
 
 .communication-section {
 
@@ -1916,7 +1595,8 @@ button {
         center;
 
     margin:
-        50px 0;
+        50px
+        0;
 
     font-family:
         "Cormorant Garamond",
@@ -1955,9 +1635,9 @@ button {
 }
 
 
-/* =========================================================
+/* ===============================
    FINAL LETTER
-========================================================= */
+================================ */
 
 .final-section {
 
@@ -1973,7 +1653,8 @@ button {
         center;
 
     padding:
-        80px 20px;
+        80px
+        20px;
 
 }
 
@@ -2018,7 +1699,10 @@ button {
 
     box-shadow:
 
-        0 20px 80px
+        0
+        20px
+        80px
+
         rgba(
             80,
             40,
@@ -2067,7 +1751,8 @@ button {
 .final-quote {
 
     margin:
-        55px 0;
+        55px
+        0;
 
     padding:
         35px;
@@ -2141,50 +1826,9 @@ button {
 }
 
 
-/* =========================================================
-   LETTER ANIMATION
-========================================================= */
-
-.letter-open-animation {
-
-    animation:
-        letterOpen
-        1s
-        ease;
-
-}
-
-
-@keyframes letterOpen {
-
-    from {
-
-        opacity:
-            0;
-
-        transform:
-            translateY(40px)
-            scale(0.96);
-
-    }
-
-    to {
-
-        opacity:
-            1;
-
-        transform:
-            translateY(0)
-            scale(1);
-
-    }
-
-}
-
-
-/* =========================================================
+/* ===============================
    ENDING
-========================================================= */
+================================ */
 
 .ending {
 
@@ -2298,9 +1942,9 @@ button {
 }
 
 
-/* =========================================================
+/* ===============================
    HEART RAIN
-========================================================= */
+================================ */
 
 .rain-heart {
 
@@ -2330,8 +1974,14 @@ button {
     to {
 
         transform:
-            translateY(110vh)
-            rotate(360deg);
+
+            translateY(
+                110vh
+            )
+
+            rotate(
+                360deg
+            );
 
         opacity:
             0;
@@ -2341,9 +1991,9 @@ button {
 }
 
 
-/* =========================================================
+/* ===============================
    MOBILE
-========================================================= */
+================================ */
 
 @media (
     max-width: 650px
@@ -2352,15 +2002,8 @@ button {
     .section {
 
         padding:
-            80px 0;
-
-    }
-
-
-    .container {
-
-        width:
-            90%;
+            80px
+            0;
 
     }
 
@@ -2370,9 +2013,6 @@ button {
         grid-template-columns:
             1fr;
 
-        gap:
-            22px;
-
     }
 
 
@@ -2381,16 +2021,14 @@ button {
         grid-template-columns:
             1fr;
 
-        margin:
-            40px 0;
-
     }
 
 
     .story-card {
 
         padding:
-            35px 25px;
+            35px
+            25px;
 
     }
 
@@ -2398,10 +2036,8 @@ button {
     .letter {
 
         padding:
-            45px 25px;
-
-        border-radius:
-            12px;
+            45px
+            25px;
 
     }
 
@@ -2409,7 +2045,8 @@ button {
     .login-card {
 
         padding:
-            45px 25px;
+            45px
+            25px;
 
     }
 
@@ -2429,254 +2066,6 @@ button {
 
         right:
             12px;
-
-        padding:
-            10px 14px;
-
-    }
-
-
-    .hero h1 {
-
-        font-size:
-            clamp(
-                65px,
-                19vw,
-                100px
-            );
-
-    }
-
-
-    .hero-subtitle {
-
-        margin:
-            35px auto;
-
-    }
-
-
-    .section-heading {
-
-        margin-bottom:
-            45px;
-
-    }
-
-
-    .section-heading h2 {
-
-        font-size:
-            48px;
-
-    }
-
-
-    .highlight {
-
-        font-size:
-            24px;
-
-    }
-
-
-    .future-intro {
-
-        font-size:
-            27px;
-
-    }
-
-
-    .future-message {
-
-        padding:
-            30px 20px;
-
-    }
-
-
-    .future-message p {
-
-        font-size:
-            27px;
-
-    }
-
-
-    .distance-card .important {
-
-        font-size:
-            29px;
-
-    }
-
-
-    .letter-lock h2 {
-
-        font-size:
-            52px;
-
-    }
-
-
-    .final-quote {
-
-        margin:
-            40px 0;
-
-        padding:
-            28px 20px;
-
-    }
-
-
-    .final-quote p {
-
-        font-size:
-            25px;
-
-    }
-
-
-    .final-quote strong {
-
-        font-size:
-            34px;
-
-    }
-
-
-    .love-ending {
-
-        font-size:
-            29px;
-
-    }
-
-
-    .letter-signature {
-
-        font-size:
-            21px;
-
-    }
-
-
-    .ending {
-
-        min-height:
-            70vh;
-
-        padding:
-            60px 20px;
-
-    }
-
-
-    .ending-content h2 {
-
-        font-size:
-            clamp(
-                60px,
-                18vw,
-                90px
-            );
-
-    }
-
-
-    .ending-content span {
-
-        font-size:
-            25px;
-
-    }
-
-}
-
-
-/* =========================================================
-   VERY SMALL PHONES
-========================================================= */
-
-@media (
-    max-width: 380px
-) {
-
-    .login-card {
-
-        padding:
-            35px 20px;
-
-    }
-
-
-    .login-card h1 {
-
-        font-size:
-            40px;
-
-    }
-
-
-    .password-input {
-
-        font-size:
-            20px;
-
-    }
-
-
-    .hero h1 {
-
-        font-size:
-            62px;
-
-    }
-
-
-    .letter {
-
-        padding:
-            35px 20px;
-
-    }
-
-}
-
-
-/* =========================================================
-   REDUCE MOTION
-========================================================= */
-
-@media (
-    prefers-reduced-motion: reduce
-) {
-
-    html {
-
-        scroll-behavior:
-            auto;
-
-    }
-
-
-    *,
-    *::before,
-    *::after {
-
-        animation-duration:
-            0.01ms !important;
-
-        animation-iteration-count:
-            1 !important;
-
-        transition-duration:
-            0.01ms !important;
-
-        scroll-behavior:
-            auto !important;
 
     }
 
