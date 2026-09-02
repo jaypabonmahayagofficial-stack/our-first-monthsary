@@ -20,125 +20,183 @@ const loginCard = document.getElementById("loginCard");
 const unlockScreen = document.getElementById("unlockScreen");
 const mainContent = document.getElementById("mainContent");
 
-const backgroundMusic =
-    document.getElementById("backgroundMusic");
+const backgroundMusic = document.getElementById("backgroundMusic");
+const musicButton = document.getElementById("musicButton");
+const musicText = document.getElementById("musicText");
 
-const musicButton =
-    document.getElementById("musicButton");
+const beginButton = document.getElementById("beginButton");
+const openHeartButton = document.getElementById("openHeartButton");
 
-const musicText =
-    document.getElementById("musicText");
+const letterLock = document.getElementById("letterLock");
+const finalLetter = document.getElementById("finalLetter");
 
-const beginButton =
-    document.getElementById("beginButton");
-
-const openHeartButton =
-    document.getElementById("openHeartButton");
-
-const letterLock =
-    document.getElementById("letterLock");
-
-const finalLetter =
-    document.getElementById("finalLetter");
-
+const memoryGrid = document.getElementById("memoryGrid");
+const floatingHearts = document.getElementById("floatingHearts");
 
 let musicPlaying = false;
+let loginInProgress = false;
 
 
 /* ==========================================
    LOGIN
 ========================================== */
 
-loginForm.addEventListener("submit", function (event) {
+if (loginForm && passwordInput) {
 
-    event.preventDefault();
+    loginForm.addEventListener("submit", function (event) {
 
-    const enteredPassword =
-        passwordInput.value;
+        event.preventDefault();
 
+        // Prevent multiple submissions
+        if (loginInProgress) return;
 
-    if (enteredPassword === PASSWORD) {
+        const enteredPassword = passwordInput.value.trim();
 
-        loginError.style.display = "none";
-        loginHint.style.display = "none";
+        /* ==========================
+           CORRECT PASSWORD
+        ========================== */
 
+        if (enteredPassword === PASSWORD) {
 
-        /* SUCCESS EFFECT */
+            loginInProgress = true;
 
-        createUnlockHearts();
+            if (loginError) {
+                loginError.style.display = "none";
+            }
 
+            if (loginHint) {
+                loginHint.style.display = "none";
+            }
 
-        loginGate.classList.add("unlocking");
+            // Create heart explosion
+            createUnlockHearts();
 
-
-        setTimeout(function () {
-
-            loginGate.style.display = "none";
-
-            unlockScreen.classList.add("show");
-
-        }, 900);
-
-
-        setTimeout(function () {
-
-            unlockScreen.classList.remove("show");
-
-            mainContent.classList.remove("hidden");
-
-            document.body.classList.add("site-open");
-
-            createFloatingHearts();
-
-        }, 2800);
+            // Start unlocking animation
+            if (loginGate) {
+                loginGate.classList.add("unlocking");
+            }
 
 
-        setTimeout(function () {
+            /* ==========================
+               SHOW UNLOCK SCREEN
+            ========================== */
 
-            document.querySelector(".hero")
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
+            setTimeout(function () {
 
-        }, 3000);
+                if (loginGate) {
+                    loginGate.style.display = "none";
+                }
 
-    }
+                if (unlockScreen) {
+                    unlockScreen.classList.add("show");
+                }
 
-    else {
-
-        passwordInput.value = "";
-
-        loginError.style.display = "block";
-
-        loginHint.style.display = "block";
+            }, 900);
 
 
-        loginCard.classList.remove("shake");
+            /* ==========================
+               SHOW MAIN CONTENT
+            ========================== */
 
-        void loginCard.offsetWidth;
+            setTimeout(function () {
 
-        loginCard.classList.add("shake");
+                if (unlockScreen) {
+                    unlockScreen.classList.remove("show");
+                }
+
+                if (mainContent) {
+                    mainContent.classList.remove("hidden");
+                }
+
+                document.body.classList.add("site-open");
+
+                createFloatingHearts();
+
+            }, 2800);
 
 
-        setTimeout(function () {
+            /* ==========================
+               SCROLL TO HERO
+            ========================== */
 
-            loginHint.style.display = "none";
+            setTimeout(function () {
 
-        }, 3000);
+                const hero = document.querySelector(".hero");
 
-    }
+                if (hero) {
 
-});
+                    hero.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                }
+
+            }, 3000);
+
+        }
 
 
-/* NUMBERS ONLY */
+        /* ==========================
+           WRONG PASSWORD
+        ========================== */
 
-passwordInput.addEventListener("input", function () {
+        else {
 
-    passwordInput.value =
-        passwordInput.value.replace(/\D/g, "");
+            passwordInput.value = "";
 
-});
+            if (loginError) {
+                loginError.style.display = "block";
+            }
+
+            if (loginHint) {
+                loginHint.style.display = "block";
+            }
+
+
+            // Shake login card
+            if (loginCard) {
+
+                loginCard.classList.remove("shake");
+
+                // Force browser reflow so animation can restart
+                void loginCard.offsetWidth;
+
+                loginCard.classList.add("shake");
+
+            }
+
+
+            // Hide hint after 3 seconds
+            setTimeout(function () {
+
+                if (loginHint) {
+                    loginHint.style.display = "none";
+                }
+
+            }, 3000);
+
+        }
+
+    });
+
+}
+
+
+/* ==========================================
+   PASSWORD — NUMBERS ONLY
+========================================== */
+
+if (passwordInput) {
+
+    passwordInput.addEventListener("input", function () {
+
+        passwordInput.value =
+            passwordInput.value.replace(/\D/g, "");
+
+    });
+
+}
 
 
 /* ==========================================
@@ -147,30 +205,29 @@ passwordInput.addEventListener("input", function () {
 
 function createUnlockHearts() {
 
-    for (let i = 0; i < 45; i++) {
+    const heartCount = 45;
 
-        const heart =
-            document.createElement("div");
+    for (let i = 0; i < heartCount; i++) {
+
+        const heart = document.createElement("div");
 
         heart.classList.add("unlock-heart-particle");
 
-        heart.innerHTML = "❤️";
+        heart.textContent = "❤️";
 
 
         const angle =
-            Math.random() * 360;
+            Math.random() * Math.PI * 2;
 
         const distance =
             100 + Math.random() * 300;
 
 
         const x =
-            Math.cos(angle * Math.PI / 180)
-            * distance;
+            Math.cos(angle) * distance;
 
         const y =
-            Math.sin(angle * Math.PI / 180)
-            * distance;
+            Math.sin(angle) * distance;
 
 
         heart.style.setProperty(
@@ -204,21 +261,34 @@ function createUnlockHearts() {
 
 function playMusic() {
 
+    if (!backgroundMusic) return;
+
     backgroundMusic.play()
         .then(function () {
 
             musicPlaying = true;
 
-            musicText.textContent =
-                "Playing";
+            if (musicText) {
+                musicText.textContent = "Playing";
+            }
+
+            if (musicButton) {
+                musicButton.classList.add("playing");
+            }
 
         })
-        .catch(function () {
+        .catch(function (error) {
+
+            console.warn(
+                "Music could not be played:",
+                error
+            );
 
             musicPlaying = false;
 
-            musicText.textContent =
-                "Music";
+            if (musicText) {
+                musicText.textContent = "Music";
+            }
 
         });
 
@@ -227,50 +297,78 @@ function playMusic() {
 
 function pauseMusic() {
 
+    if (!backgroundMusic) return;
+
     backgroundMusic.pause();
 
     musicPlaying = false;
 
-    musicText.textContent =
-        "Music";
+    if (musicText) {
+        musicText.textContent = "Music";
+    }
+
+    if (musicButton) {
+        musicButton.classList.remove("playing");
+    }
 
 }
 
 
-musicButton.addEventListener(
-    "click",
-    function () {
+/* ==========================================
+   MUSIC BUTTON
+========================================== */
 
-        if (musicPlaying) {
+if (musicButton) {
 
-            pauseMusic();
+    musicButton.addEventListener(
+        "click",
+        function () {
+
+            if (musicPlaying) {
+                pauseMusic();
+            }
+
+            else {
+                playMusic();
+            }
 
         }
+    );
 
-        else {
+}
 
+
+/* ==========================================
+   BEGIN BUTTON
+========================================== */
+
+if (beginButton) {
+
+    beginButton.addEventListener(
+        "click",
+        function () {
+
+            // Browsers allow music more reliably
+            // when started from a user click.
             playMusic();
 
+
+            const story =
+                document.getElementById("story");
+
+            if (story) {
+
+                story.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+
         }
+    );
 
-    }
-);
-
-
-beginButton.addEventListener(
-    "click",
-    function () {
-
-        playMusic();
-
-
-        document.getElementById("story")
-            .scrollIntoView({
-                behavior: "smooth"
-            });
-
-    }
-);
+}
 
 
 /* ==========================================
@@ -279,16 +377,23 @@ beginButton.addEventListener(
 
 function createFloatingHearts() {
 
-    const container =
-        document.getElementById("floatingHearts");
+    if (!floatingHearts) return;
+
+    // Prevent creating them more than once
+    if (floatingHearts.children.length > 0) {
+        return;
+    }
 
 
-    for (let i = 0; i < 25; i++) {
+    const heartCount = 25;
+
+
+    for (let i = 0; i < heartCount; i++) {
 
         const heart =
             document.createElement("span");
 
-        heart.innerHTML = "❤️";
+        heart.textContent = "❤️";
 
         heart.classList.add(
             "floating-heart"
@@ -311,7 +416,7 @@ function createFloatingHearts() {
             12 + Math.random() * 20 + "px";
 
 
-        container.appendChild(heart);
+        floatingHearts.appendChild(heart);
 
     }
 
@@ -334,6 +439,9 @@ const observer =
                         "visible"
                     );
 
+                    // Stop observing once visible
+                    observer.unobserve(entry.target);
+
                 }
 
             });
@@ -345,7 +453,8 @@ const observer =
     );
 
 
-document.querySelectorAll(".reveal")
+document
+    .querySelectorAll(".reveal")
     .forEach(function (element) {
 
         observer.observe(element);
@@ -357,28 +466,37 @@ document.querySelectorAll(".reveal")
    OPEN FINAL LETTER
 ========================================== */
 
-openHeartButton.addEventListener(
-    "click",
-    function () {
+if (openHeartButton) {
 
-        letterLock.classList.add("hidden");
+    openHeartButton.addEventListener(
+        "click",
+        function () {
 
-
-        setTimeout(function () {
-
-            finalLetter.classList.remove("hidden");
-
-            finalLetter.classList.add(
-                "letter-open-animation"
-            );
+            if (letterLock) {
+                letterLock.classList.add("hidden");
+            }
 
 
-            createHeartRain();
+            setTimeout(function () {
 
-        }, 500);
+                if (finalLetter) {
 
-    }
-);
+                    finalLetter.classList.remove("hidden");
+
+                    finalLetter.classList.add(
+                        "letter-open-animation"
+                    );
+
+                }
+
+                createHeartRain();
+
+            }, 500);
+
+        }
+    );
+
+}
 
 
 /* ==========================================
@@ -387,12 +505,15 @@ openHeartButton.addEventListener(
 
 function createHeartRain() {
 
-    for (let i = 0; i < 70; i++) {
+    const heartCount = 70;
+
+
+    for (let i = 0; i < heartCount; i++) {
 
         const heart =
             document.createElement("div");
 
-        heart.innerHTML = "❤️";
+        heart.textContent = "❤️";
 
         heart.classList.add(
             "rain-heart"
@@ -466,16 +587,19 @@ const mediaList = [
         caption:
             "Our first travel together."
     },
-   {
+
+    {
         file: "Photo11.jpeg",
         caption:
             "Our first travel together."
     },
-   {
+
+    {
         file: "Photo12.jpeg",
         caption:
             "Our first travel together."
     },
+
     {
         file: "Photo3.png",
         caption:
@@ -501,7 +625,9 @@ const mediaList = [
     },
 
 
-    /* VIDEOS */
+    /* ==========================
+       VIDEOS
+    ========================== */
 
     {
         file: "vid1.mp4",
@@ -562,107 +688,122 @@ const mediaList = [
         caption:
             "Rides with you. ❤️"
     },
-   {
+
+    {
         file: "vid11.mp4",
         caption:
-            "First tiktok vid with you. ❤️"
+            "First TikTok video with you. ❤️"
     }
 
 ];
 
 
-const memoryGrid =
-    document.getElementById("memoryGrid");
+/* ==========================================
+   CREATE MEMORY CARDS
+========================================== */
+
+if (memoryGrid) {
+
+    mediaList.forEach(function (media, index) {
+
+        const card =
+            document.createElement("div");
+
+        card.classList.add(
+            "memory-card",
+            "reveal"
+        );
 
 
-mediaList.forEach(function (
-    media,
-    index
-) {
-
-    const card =
-        document.createElement("div");
-
-    card.classList.add(
-        "memory-card",
-        "reveal"
-    );
+        const extension =
+            media.file
+                .split(".")
+                .pop()
+                .toLowerCase();
 
 
-    const extension =
-        media.file
-            .split(".")
-            .pop()
-            .toLowerCase();
+        const isVideo =
+            ["mp4", "webm", "ogg"].includes(
+                extension
+            );
 
 
-    const isVideo =
-        extension === "mp4";
+        let mediaElement;
 
 
-    let mediaElement;
+        /* ==========================
+           VIDEO
+        ========================== */
+
+        if (isVideo) {
+
+            mediaElement = `
+
+                <video
+                    src="photos/${media.file}"
+                    muted
+                    loop
+                    playsinline
+                    preload="metadata"
+                ></video>
+
+                <div class="video-label">
+                    ▶ VIDEO
+                </div>
+
+            `;
+
+        }
 
 
-    if (isVideo) {
+        /* ==========================
+           IMAGE
+        ========================== */
 
-        mediaElement = `
+        else {
 
-            <video
-                src="photos/${media.file}"
-                autoplay
-                muted
-                loop
-                playsinline
-            ></video>
+            mediaElement = `
 
-            <div class="video-label">
-                ▶ VIDEO
+                <img
+                    src="photos/${media.file}"
+                    alt="Our Memory ${index + 1}"
+                    loading="lazy"
+                >
+
+            `;
+
+        }
+
+
+        /* ==========================
+           CARD HTML
+        ========================== */
+
+        card.innerHTML = `
+
+            <div class="photo-wrapper">
+
+                ${mediaElement}
+
+                <div class="photo-number">
+                    ${String(index + 1).padStart(2, "0")}
+                </div>
+
             </div>
+
+            <p>
+                ${media.caption}
+            </p>
 
         `;
 
-    }
 
-    else {
-
-        mediaElement = `
-
-            <img
-                src="photos/${media.file}"
-                alt="Our Memory ${index + 1}"
-                loading="lazy"
-            >
-
-        `;
-
-    }
+        memoryGrid.appendChild(card);
 
 
-    card.innerHTML = `
+        // Observe newly created card
+        observer.observe(card);
 
-        <div class="photo-wrapper">
+    });
 
-            ${mediaElement}
-
-            <div class="photo-number">
-
-                ${String(index + 1)
-                    .padStart(2, "0")}
-
-            </div>
-
-        </div>
-
-
-        <p>
-            ${media.caption}
-        </p>
-
-    `;
-
-
-    memoryGrid.appendChild(card);
-
-    observer.observe(card);
-
-});
+}
