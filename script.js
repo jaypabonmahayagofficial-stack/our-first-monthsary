@@ -476,7 +476,6 @@ const mediaList = [
         caption:
             "Our first travel together."
     },
-
     {
         file: "Photo3.png",
         caption:
@@ -562,7 +561,7 @@ const mediaList = [
         file: "vid10.mp4",
         caption:
             "Rides with you. ❤️"
-    }
+    },
    {
         file: "vid11.mp4",
         caption:
