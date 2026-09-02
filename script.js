@@ -1,13 +1,19 @@
-/* ==========================================
+/* =========================================================
+   OUR FIRST CHAPTER ❤️
+   MAIN JAVASCRIPT
+========================================================= */
+
+
+/* =========================================================
    PASSWORD
-========================================== */
+========================================================= */
 
 const PASSWORD = "080226";
 
 
-/* ==========================================
+/* =========================================================
    ELEMENTS
-========================================== */
+========================================================= */
 
 const loginGate = document.getElementById("loginGate");
 const loginForm = document.getElementById("loginForm");
@@ -20,214 +26,272 @@ const loginCard = document.getElementById("loginCard");
 const unlockScreen = document.getElementById("unlockScreen");
 const mainContent = document.getElementById("mainContent");
 
-const backgroundMusic = document.getElementById("backgroundMusic");
-const musicButton = document.getElementById("musicButton");
-const musicText = document.getElementById("musicText");
+const backgroundMusic =
+    document.getElementById("backgroundMusic");
 
-const beginButton = document.getElementById("beginButton");
-const openHeartButton = document.getElementById("openHeartButton");
+const musicButton =
+    document.getElementById("musicButton");
 
-const letterLock = document.getElementById("letterLock");
-const finalLetter = document.getElementById("finalLetter");
+const musicText =
+    document.getElementById("musicText");
 
-const memoryGrid = document.getElementById("memoryGrid");
-const floatingHearts = document.getElementById("floatingHearts");
+const beginButton =
+    document.getElementById("beginButton");
+
+const openHeartButton =
+    document.getElementById("openHeartButton");
+
+const letterLock =
+    document.getElementById("letterLock");
+
+const finalLetter =
+    document.getElementById("finalLetter");
+
+const memoryGrid =
+    document.getElementById("memoryGrid");
+
+const floatingHearts =
+    document.getElementById("floatingHearts");
+
 
 let musicPlaying = false;
-let loginInProgress = false;
 
 
-/* ==========================================
+/* =========================================================
    LOGIN
-========================================== */
+========================================================= */
 
-if (loginForm && passwordInput) {
+if (loginForm) {
 
-    loginForm.addEventListener("submit", function (event) {
+    loginForm.addEventListener(
+        "submit",
+        function (event) {
 
-        event.preventDefault();
+            event.preventDefault();
 
-        // Prevent multiple submissions
-        if (loginInProgress) return;
 
-        const enteredPassword = passwordInput.value.trim();
+            const enteredPassword =
+                passwordInput.value.trim();
 
-        /* ==========================
-           CORRECT PASSWORD
-        ========================== */
 
-        if (enteredPassword === PASSWORD) {
+            /* -----------------------------------------
+               CORRECT PASSWORD
+            ----------------------------------------- */
 
-            loginInProgress = true;
+            if (enteredPassword === PASSWORD) {
 
-            if (loginError) {
                 loginError.style.display = "none";
-            }
-
-            if (loginHint) {
                 loginHint.style.display = "none";
+
+
+                /* Create heart explosion */
+
+                createUnlockHearts();
+
+
+                /* Add unlock animation */
+
+                loginGate.classList.add(
+                    "unlocking"
+                );
+
+
+                /* Hide login */
+
+                setTimeout(
+                    function () {
+
+                        loginGate.style.display =
+                            "none";
+
+                        unlockScreen.classList.add(
+                            "show"
+                        );
+
+                    },
+                    900
+                );
+
+
+                /* Show main website */
+
+                setTimeout(
+                    function () {
+
+                        unlockScreen.classList.remove(
+                            "show"
+                        );
+
+                        mainContent.classList.remove(
+                            "hidden"
+                        );
+
+                        document.body.classList.add(
+                            "site-open"
+                        );
+
+
+                        createFloatingHearts();
+
+
+                        /*
+                         * Start videos after
+                         * website becomes visible
+                         */
+
+                        startAllVideos();
+
+
+                    },
+                    2800
+                );
+
+
+                /* Scroll to hero */
+
+                setTimeout(
+                    function () {
+
+                        const hero =
+                            document.querySelector(
+                                ".hero"
+                            );
+
+
+                        if (hero) {
+
+                            hero.scrollIntoView({
+                                behavior: "smooth"
+                            });
+
+                        }
+
+                    },
+                    3000
+                );
+
             }
 
-            // Create heart explosion
-            createUnlockHearts();
 
-            // Start unlocking animation
-            if (loginGate) {
-                loginGate.classList.add("unlocking");
-            }
+            /* -----------------------------------------
+               WRONG PASSWORD
+            ----------------------------------------- */
 
+            else {
 
-            /* ==========================
-               SHOW UNLOCK SCREEN
-            ========================== */
+                passwordInput.value = "";
 
-            setTimeout(function () {
+                loginError.style.display =
+                    "block";
 
-                if (loginGate) {
-                    loginGate.style.display = "none";
-                }
-
-                if (unlockScreen) {
-                    unlockScreen.classList.add("show");
-                }
-
-            }, 900);
+                loginHint.style.display =
+                    "block";
 
 
-            /* ==========================
-               SHOW MAIN CONTENT
-            ========================== */
+                /* Shake login card */
 
-            setTimeout(function () {
-
-                if (unlockScreen) {
-                    unlockScreen.classList.remove("show");
-                }
-
-                if (mainContent) {
-                    mainContent.classList.remove("hidden");
-                }
-
-                document.body.classList.add("site-open");
-
-                createFloatingHearts();
-
-            }, 2800);
+                loginCard.classList.remove(
+                    "shake"
+                );
 
 
-            /* ==========================
-               SCROLL TO HERO
-            ========================== */
-
-            setTimeout(function () {
-
-                const hero = document.querySelector(".hero");
-
-                if (hero) {
-
-                    hero.scrollIntoView({
-                        behavior: "smooth",
-                        block: "start"
-                    });
-
-                }
-
-            }, 3000);
-
-        }
-
-
-        /* ==========================
-           WRONG PASSWORD
-        ========================== */
-
-        else {
-
-            passwordInput.value = "";
-
-            if (loginError) {
-                loginError.style.display = "block";
-            }
-
-            if (loginHint) {
-                loginHint.style.display = "block";
-            }
-
-
-            // Shake login card
-            if (loginCard) {
-
-                loginCard.classList.remove("shake");
-
-                // Force browser reflow so animation can restart
                 void loginCard.offsetWidth;
 
-                loginCard.classList.add("shake");
+
+                loginCard.classList.add(
+                    "shake"
+                );
+
+
+                /* Hide hint */
+
+                setTimeout(
+                    function () {
+
+                        loginHint.style.display =
+                            "none";
+
+                    },
+                    3000
+                );
 
             }
 
-
-            // Hide hint after 3 seconds
-            setTimeout(function () {
-
-                if (loginHint) {
-                    loginHint.style.display = "none";
-                }
-
-            }, 3000);
-
         }
-
-    });
+    );
 
 }
 
 
-/* ==========================================
-   PASSWORD — NUMBERS ONLY
-========================================== */
+/* =========================================================
+   PASSWORD INPUT
+   NUMBERS ONLY
+========================================================= */
 
 if (passwordInput) {
 
-    passwordInput.addEventListener("input", function () {
+    passwordInput.addEventListener(
+        "input",
+        function () {
 
-        passwordInput.value =
-            passwordInput.value.replace(/\D/g, "");
+            passwordInput.value =
+                passwordInput.value.replace(
+                    /\D/g,
+                    ""
+                );
 
-    });
+        }
+    );
 
 }
 
 
-/* ==========================================
+/* =========================================================
    UNLOCK HEART EXPLOSION
-========================================== */
+========================================================= */
 
 function createUnlockHearts() {
 
-    const heartCount = 45;
+    for (
+        let i = 0;
+        i < 45;
+        i++
+    ) {
 
-    for (let i = 0; i < heartCount; i++) {
+        const heart =
+            document.createElement("div");
 
-        const heart = document.createElement("div");
 
-        heart.classList.add("unlock-heart-particle");
+        heart.classList.add(
+            "unlock-heart-particle"
+        );
 
-        heart.textContent = "❤️";
+
+        heart.innerHTML =
+            "❤️";
 
 
         const angle =
-            Math.random() * Math.PI * 2;
+            Math.random() * 360;
+
 
         const distance =
-            100 + Math.random() * 300;
+            100 +
+            Math.random() * 300;
 
 
         const x =
-            Math.cos(angle) * distance;
+            Math.cos(
+                angle * Math.PI / 180
+            ) *
+            distance;
+
 
         const y =
-            Math.sin(angle) * distance;
+            Math.sin(
+                angle * Math.PI / 180
+            ) *
+            distance;
 
 
         heart.style.setProperty(
@@ -235,88 +299,145 @@ function createUnlockHearts() {
             `${x}px`
         );
 
+
         heart.style.setProperty(
             "--y",
             `${y}px`
         );
 
 
-        document.body.appendChild(heart);
+        heart.style.fontSize =
+            `${12 + Math.random() * 25}px`;
 
 
-        setTimeout(function () {
+        document.body.appendChild(
+            heart
+        );
 
-            heart.remove();
 
-        }, 2000);
+        setTimeout(
+            function () {
+
+                heart.remove();
+
+            },
+            2000
+        );
 
     }
 
 }
 
 
-/* ==========================================
+/* =========================================================
    MUSIC
-========================================== */
+========================================================= */
 
 function playMusic() {
 
-    if (!backgroundMusic) return;
+    if (!backgroundMusic) {
+        return;
+    }
 
-    backgroundMusic.play()
-        .then(function () {
 
-            musicPlaying = true;
+    backgroundMusic.volume = 0.7;
 
-            if (musicText) {
-                musicText.textContent = "Playing";
-            }
 
-            if (musicButton) {
-                musicButton.classList.add("playing");
-            }
+    const playPromise =
+        backgroundMusic.play();
 
-        })
-        .catch(function (error) {
 
-            console.warn(
-                "Music could not be played:",
-                error
+    if (
+        playPromise !== undefined
+    ) {
+
+        playPromise
+            .then(
+                function () {
+
+                    musicPlaying = true;
+
+
+                    if (musicText) {
+
+                        musicText.textContent =
+                            "Playing";
+
+                    }
+
+
+                    if (musicButton) {
+
+                        musicButton.classList.add(
+                            "playing"
+                        );
+
+                    }
+
+                }
+            )
+            .catch(
+                function (error) {
+
+                    console.log(
+                        "Music autoplay blocked:",
+                        error
+                    );
+
+
+                    musicPlaying = false;
+
+
+                    if (musicText) {
+
+                        musicText.textContent =
+                            "Music";
+
+                    }
+
+                }
             );
 
-            musicPlaying = false;
-
-            if (musicText) {
-                musicText.textContent = "Music";
-            }
-
-        });
+    }
 
 }
 
 
 function pauseMusic() {
 
-    if (!backgroundMusic) return;
+    if (!backgroundMusic) {
+        return;
+    }
+
 
     backgroundMusic.pause();
 
+
     musicPlaying = false;
 
+
     if (musicText) {
-        musicText.textContent = "Music";
+
+        musicText.textContent =
+            "Music";
+
     }
 
+
     if (musicButton) {
-        musicButton.classList.remove("playing");
+
+        musicButton.classList.remove(
+            "playing"
+        );
+
     }
 
 }
 
 
-/* ==========================================
+/* =========================================================
    MUSIC BUTTON
-========================================== */
+========================================================= */
 
 if (musicButton) {
 
@@ -325,11 +446,15 @@ if (musicButton) {
         function () {
 
             if (musicPlaying) {
+
                 pauseMusic();
+
             }
 
             else {
+
                 playMusic();
+
             }
 
         }
@@ -338,9 +463,9 @@ if (musicButton) {
 }
 
 
-/* ==========================================
-   BEGIN BUTTON
-========================================== */
+/* =========================================================
+   BEGIN OUR STORY
+========================================================= */
 
 if (beginButton) {
 
@@ -348,22 +473,35 @@ if (beginButton) {
         "click",
         function () {
 
-            // Browsers allow music more reliably
-            // when started from a user click.
+            /*
+             * User interaction allows
+             * music to start more reliably.
+             */
+
             playMusic();
 
 
             const story =
-                document.getElementById("story");
+                document.getElementById(
+                    "story"
+                );
+
 
             if (story) {
 
                 story.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
+                    behavior: "smooth"
                 });
 
             }
+
+
+            /*
+             * Also attempt to start
+             * all videos.
+             */
+
+            startAllVideos();
 
         }
     );
@@ -371,29 +509,37 @@ if (beginButton) {
 }
 
 
-/* ==========================================
+/* =========================================================
    FLOATING HEARTS
-========================================== */
+========================================================= */
 
 function createFloatingHearts() {
 
-    if (!floatingHearts) return;
-
-    // Prevent creating them more than once
-    if (floatingHearts.children.length > 0) {
+    if (!floatingHearts) {
         return;
     }
 
 
-    const heartCount = 25;
+    /*
+     * Prevent duplicate hearts
+     */
+
+    floatingHearts.innerHTML = "";
 
 
-    for (let i = 0; i < heartCount; i++) {
+    for (
+        let i = 0;
+        i < 25;
+        i++
+    ) {
 
         const heart =
             document.createElement("span");
 
-        heart.textContent = "❤️";
+
+        heart.innerHTML =
+            "❤️";
+
 
         heart.classList.add(
             "floating-heart"
@@ -401,50 +547,59 @@ function createFloatingHearts() {
 
 
         heart.style.left =
-            Math.random() * 100 + "%";
+            Math.random() * 100 +
+            "%";
 
 
         heart.style.animationDuration =
-            6 + Math.random() * 8 + "s";
+            6 +
+            Math.random() * 8 +
+            "s";
 
 
         heart.style.animationDelay =
-            Math.random() * 5 + "s";
+            Math.random() * 5 +
+            "s";
 
 
         heart.style.fontSize =
-            12 + Math.random() * 20 + "px";
+            12 +
+            Math.random() * 20 +
+            "px";
 
 
-        floatingHearts.appendChild(heart);
+        floatingHearts.appendChild(
+            heart
+        );
 
     }
 
 }
 
 
-/* ==========================================
+/* =========================================================
    SCROLL REVEAL
-========================================== */
+========================================================= */
 
 const observer =
     new IntersectionObserver(
         function (entries) {
 
-            entries.forEach(function (entry) {
+            entries.forEach(
+                function (entry) {
 
-                if (entry.isIntersecting) {
+                    if (
+                        entry.isIntersecting
+                    ) {
 
-                    entry.target.classList.add(
-                        "visible"
-                    );
+                        entry.target.classList.add(
+                            "visible"
+                        );
 
-                    // Stop observing once visible
-                    observer.unobserve(entry.target);
+                    }
 
                 }
-
-            });
+            );
 
         },
         {
@@ -455,16 +610,20 @@ const observer =
 
 document
     .querySelectorAll(".reveal")
-    .forEach(function (element) {
+    .forEach(
+        function (element) {
 
-        observer.observe(element);
+            observer.observe(
+                element
+            );
 
-    });
+        }
+    );
 
 
-/* ==========================================
+/* =========================================================
    OPEN FINAL LETTER
-========================================== */
+========================================================= */
 
 if (openHeartButton) {
 
@@ -472,26 +631,58 @@ if (openHeartButton) {
         "click",
         function () {
 
-            if (letterLock) {
-                letterLock.classList.add("hidden");
-            }
+            /*
+             * Hide lock screen
+             */
+
+            letterLock.classList.add(
+                "hidden"
+            );
 
 
-            setTimeout(function () {
+            /*
+             * Open letter
+             */
 
-                if (finalLetter) {
+            setTimeout(
+                function () {
 
-                    finalLetter.classList.remove("hidden");
+                    finalLetter.classList.remove(
+                        "hidden"
+                    );
+
 
                     finalLetter.classList.add(
                         "letter-open-animation"
                     );
 
-                }
 
-                createHeartRain();
+                    /*
+                     * Heart rain
+                     */
 
-            }, 500);
+                    createHeartRain();
+
+
+                    /*
+                     * Scroll to letter
+                     */
+
+                    setTimeout(
+                        function () {
+
+                            finalLetter.scrollIntoView({
+                                behavior: "smooth",
+                                block: "center"
+                            });
+
+                        },
+                        200
+                    );
+
+                },
+                500
+            );
 
         }
     );
@@ -499,21 +690,25 @@ if (openHeartButton) {
 }
 
 
-/* ==========================================
+/* =========================================================
    HEART RAIN SURPRISE
-========================================== */
+========================================================= */
 
 function createHeartRain() {
 
-    const heartCount = 70;
-
-
-    for (let i = 0; i < heartCount; i++) {
+    for (
+        let i = 0;
+        i < 70;
+        i++
+    ) {
 
         const heart =
             document.createElement("div");
 
-        heart.textContent = "❤️";
+
+        heart.innerHTML =
+            "❤️";
+
 
         heart.classList.add(
             "rain-heart"
@@ -521,36 +716,49 @@ function createHeartRain() {
 
 
         heart.style.left =
-            Math.random() * 100 + "%";
+            Math.random() * 100 +
+            "%";
 
 
         heart.style.animationDelay =
-            Math.random() * 2 + "s";
+            Math.random() * 2 +
+            "s";
 
 
         heart.style.fontSize =
-            15 + Math.random() * 25 + "px";
+            15 +
+            Math.random() * 25 +
+            "px";
 
 
-        document.body.appendChild(heart);
+        document.body.appendChild(
+            heart
+        );
 
 
-        setTimeout(function () {
+        setTimeout(
+            function () {
 
-            heart.remove();
+                heart.remove();
 
-        }, 6000);
+            },
+            6500
+        );
 
     }
 
 }
 
 
-/* ==========================================
+/* =========================================================
    PHOTO / VIDEO MEMORIES
-========================================== */
+========================================================= */
 
 const mediaList = [
+
+    /* =========================
+       PHOTOS
+    ========================= */
 
     {
         file: "photo10.jpeg",
@@ -625,9 +833,9 @@ const mediaList = [
     },
 
 
-    /* ==========================
+    /* =========================
        VIDEOS
-    ========================== */
+    ========================= */
 
     {
         file: "vid1.mp4",
@@ -692,118 +900,605 @@ const mediaList = [
     {
         file: "vid11.mp4",
         caption:
-            "First TikTok video with you. ❤️"
+            "First TikTok vid with you. ❤️"
     }
 
 ];
 
 
-/* ==========================================
-   CREATE MEMORY CARDS
-========================================== */
+/* =========================================================
+   CREATE MEDIA CARDS
+========================================================= */
 
-if (memoryGrid) {
+function createMediaCards() {
 
-    mediaList.forEach(function (media, index) {
-
-        const card =
-            document.createElement("div");
-
-        card.classList.add(
-            "memory-card",
-            "reveal"
-        );
+    if (!memoryGrid) {
+        return;
+    }
 
 
-        const extension =
-            media.file
-                .split(".")
-                .pop()
-                .toLowerCase();
+    /*
+     * Clear existing content
+     */
+
+    memoryGrid.innerHTML = "";
 
 
-        const isVideo =
-            ["mp4", "webm", "ogg"].includes(
-                extension
+    mediaList.forEach(
+        function (media, index) {
+
+            const card =
+                document.createElement("div");
+
+
+            card.classList.add(
+                "memory-card",
+                "reveal"
             );
 
 
-        let mediaElement;
+            const extension =
+                media.file
+                    .split(".")
+                    .pop()
+                    .toLowerCase();
 
 
-        /* ==========================
-           VIDEO
-        ========================== */
+            const isVideo =
+                extension === "mp4";
 
-        if (isVideo) {
 
-            mediaElement = `
+            /* =================================================
+               VIDEO
+            ================================================= */
 
-                <video
-                    src="photos/${media.file}"
-                    muted
-                    loop
-                    playsinline
-                    preload="metadata"
-                ></video>
+            if (isVideo) {
 
-                <div class="video-label">
-                    ▶ VIDEO
-                </div>
+                const wrapper =
+                    document.createElement("div");
 
-            `;
+
+                wrapper.classList.add(
+                    "photo-wrapper"
+                );
+
+
+                const video =
+                    document.createElement("video");
+
+
+                /*
+                 * VIDEO SOURCE
+                 */
+
+                video.src =
+                    "photos/" +
+                    media.file;
+
+
+                /*
+                 * CRITICAL AUTOPLAY SETTINGS
+                 */
+
+                video.autoplay =
+                    true;
+
+
+                video.muted =
+                    true;
+
+
+                video.loop =
+                    true;
+
+
+                video.playsInline =
+                    true;
+
+
+                video.controls =
+                    false;
+
+
+                /*
+                 * HTML attributes
+                 * for maximum compatibility
+                 */
+
+                video.setAttribute(
+                    "autoplay",
+                    ""
+                );
+
+
+                video.setAttribute(
+                    "muted",
+                    ""
+                );
+
+
+                video.setAttribute(
+                    "loop",
+                    ""
+                );
+
+
+                video.setAttribute(
+                    "playsinline",
+                    ""
+                );
+
+
+                video.setAttribute(
+                    "webkit-playsinline",
+                    ""
+                );
+
+
+                /*
+                 * Preload video
+                 */
+
+                video.preload =
+                    "auto";
+
+
+                /*
+                 * Add video
+                 */
+
+                wrapper.appendChild(
+                    video
+                );
+
+
+                /*
+                 * Video label
+                 */
+
+                const videoLabel =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                videoLabel.classList.add(
+                    "video-label"
+                );
+
+
+                videoLabel.innerHTML =
+                    "▶ VIDEO";
+
+
+                wrapper.appendChild(
+                    videoLabel
+                );
+
+
+                /*
+                 * Number
+                 */
+
+                const number =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                number.classList.add(
+                    "photo-number"
+                );
+
+
+                number.textContent =
+                    String(index + 1)
+                        .padStart(2, "0");
+
+
+                wrapper.appendChild(
+                    number
+                );
+
+
+                /*
+                 * Add wrapper
+                 */
+
+                card.appendChild(
+                    wrapper
+                );
+
+
+                /*
+                 * Caption
+                 */
+
+                const caption =
+                    document.createElement(
+                        "p"
+                    );
+
+
+                caption.textContent =
+                    media.caption;
+
+
+                card.appendChild(
+                    caption
+                );
+
+
+                /*
+                 * Add card to page
+                 */
+
+                memoryGrid.appendChild(
+                    card
+                );
+
+
+                /*
+                 * Observe reveal
+                 */
+
+                observer.observe(
+                    card
+                );
+
+
+                /*
+                 * Start video
+                 */
+
+                startVideo(
+                    video
+                );
+
+            }
+
+
+            /* =================================================
+               IMAGE
+            ================================================= */
+
+            else {
+
+                const wrapper =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                wrapper.classList.add(
+                    "photo-wrapper"
+                );
+
+
+                const image =
+                    document.createElement(
+                        "img"
+                    );
+
+
+                image.src =
+                    "photos/" +
+                    media.file;
+
+
+                image.alt =
+                    "Our Memory " +
+                    (index + 1);
+
+
+                image.loading =
+                    "lazy";
+
+
+                wrapper.appendChild(
+                    image
+                );
+
+
+                /*
+                 * Number
+                 */
+
+                const number =
+                    document.createElement(
+                        "div"
+                    );
+
+
+                number.classList.add(
+                    "photo-number"
+                );
+
+
+                number.textContent =
+                    String(index + 1)
+                        .padStart(2, "0");
+
+
+                wrapper.appendChild(
+                    number
+                );
+
+
+                /*
+                 * Add wrapper
+                 */
+
+                card.appendChild(
+                    wrapper
+                );
+
+
+                /*
+                 * Caption
+                 */
+
+                const caption =
+                    document.createElement(
+                        "p"
+                    );
+
+
+                caption.textContent =
+                    media.caption;
+
+
+                card.appendChild(
+                    caption
+                );
+
+
+                /*
+                 * Add card
+                 */
+
+                memoryGrid.appendChild(
+                    card
+                );
+
+
+                /*
+                 * Observe reveal
+                 */
+
+                observer.observe(
+                    card
+                );
+
+            }
 
         }
-
-
-        /* ==========================
-           IMAGE
-        ========================== */
-
-        else {
-
-            mediaElement = `
-
-                <img
-                    src="photos/${media.file}"
-                    alt="Our Memory ${index + 1}"
-                    loading="lazy"
-                >
-
-            `;
-
-        }
-
-
-        /* ==========================
-           CARD HTML
-        ========================== */
-
-        card.innerHTML = `
-
-            <div class="photo-wrapper">
-
-                ${mediaElement}
-
-                <div class="photo-number">
-                    ${String(index + 1).padStart(2, "0")}
-                </div>
-
-            </div>
-
-            <p>
-                ${media.caption}
-            </p>
-
-        `;
-
-
-        memoryGrid.appendChild(card);
-
-
-        // Observe newly created card
-        observer.observe(card);
-
-    });
+    );
 
 }
+
+
+/* =========================================================
+   START ONE VIDEO
+========================================================= */
+
+function startVideo(video) {
+
+    if (!video) {
+        return;
+    }
+
+
+    /*
+     * Force muted autoplay
+     */
+
+    video.muted =
+        true;
+
+
+    video.defaultMuted =
+        true;
+
+
+    video.autoplay =
+        true;
+
+
+    video.loop =
+        true;
+
+
+    video.playsInline =
+        true;
+
+
+    /*
+     * Try to play
+     */
+
+    const playPromise =
+        video.play();
+
+
+    if (
+        playPromise !== undefined
+    ) {
+
+        playPromise.catch(
+            function (error) {
+
+                console.log(
+                    "Autoplay blocked:",
+                    video.src,
+                    error
+                );
+
+            }
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   START ALL VIDEOS
+========================================================= */
+
+function startAllVideos() {
+
+    const videos =
+        document.querySelectorAll(
+            "#memoryGrid video"
+        );
+
+
+    videos.forEach(
+        function (video) {
+
+            startVideo(
+                video
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   VIDEO AUTOPLAY WHEN VISIBLE
+========================================================= */
+
+const videoObserver =
+    new IntersectionObserver(
+        function (entries) {
+
+            entries.forEach(
+                function (entry) {
+
+                    const video =
+                        entry.target;
+
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        startVideo(
+                            video
+                        );
+
+                    }
+
+                    else {
+
+                        /*
+                         * Pause videos that are
+                         * far outside the screen.
+                         */
+
+                        video.pause();
+
+                    }
+
+                }
+            );
+
+        },
+        {
+            threshold: 0.15
+        }
+    );
+
+
+/* =========================================================
+   OBSERVE ALL VIDEOS
+========================================================= */
+
+function observeVideos() {
+
+    const videos =
+        document.querySelectorAll(
+            "#memoryGrid video"
+        );
+
+
+    videos.forEach(
+        function (video) {
+
+            videoObserver.observe(
+                video
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   PAGE VISIBILITY
+========================================================= */
+
+document.addEventListener(
+    "visibilitychange",
+    function () {
+
+        if (
+            document.visibilityState ===
+            "visible"
+        ) {
+
+            startAllVideos();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   USER INTERACTION
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function () {
+
+        startAllVideos();
+
+    }
+);
+
+
+/* =========================================================
+   PAGE LOAD
+========================================================= */
+
+window.addEventListener(
+    "load",
+    function () {
+
+        createMediaCards();
+
+
+        /*
+         * Give browser time to
+         * load video elements.
+         */
+
+        setTimeout(
+            function () {
+
+                startAllVideos();
+
+                observeVideos();
+
+            },
+            500
+        );
+
+    }
+);
